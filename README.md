@@ -122,10 +122,7 @@ Assuming you have all installations above configured
 ## 4.1 Run locally
 
 ```
-./scripts/install
-poetry shell
-./scripts/test
-./scripts/run
+docker-compose up -d --build
 ```
 
 ## 4.4 Local start up message
