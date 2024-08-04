@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
-from app.api.routers import auth
+from app.api.routers import auth, products
 from app.config import get_settings, Settings
 from app.database import sessionmanager
 from app.logger import get_logger
@@ -133,11 +133,6 @@ async def set_secure_headers(request: Request, call_next: Callable) -> Response:
     return response
 
 
-@app.middleware("http")
-async def client_middleware(request: Request, call_next: Callable) -> Response:
-    return await call_next(request)
-
-
 @app.get("/status", status_code=status.HTTP_200_OK, operation_id="status_200")
 async def get_status() -> dict[str, Literal[True]]:
     return {"healthy": True}
@@ -156,6 +151,7 @@ async def get_error() -> None:
 
 
 app.include_router(auth.router)
+app.include_router(products.router)
 
 
 if __name__ == "__main__":

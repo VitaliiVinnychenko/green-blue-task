@@ -32,7 +32,7 @@ def upgrade():
         sa.Column("price", sa.Float(), nullable=False),
         sa.Column("description", sa.Text(), nullable=False),
         sa.Column("created_at", sa.DateTime(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(), nullable=False),
+        sa.Column("updated_at", sa.DateTime(), nullable=True),
         sa.Column("deleted_at", sa.DateTime(), nullable=True, index=True),
         sa.Column("category_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(

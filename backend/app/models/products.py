@@ -20,6 +20,7 @@ class ProductCategory(Base):
     id = Column(Integer, primary_key=True, autoincrement="auto")
     name = Column(String(100), unique=True, nullable=False, index=True)
     created_at = Column(DateTime, server_default=func.now())
+    products = relationship("Product", back_populates="category")
 
 
 class Product(Base):
@@ -30,7 +31,7 @@ class Product(Base):
     price = Column(Float, nullable=False)
     description = Column(Text, nullable=False)
     category_id = Column(Integer, ForeignKey("product_categories.id"), nullable=True)
-    created_at = Column(DateTime, server_default=func.now())
-    updated_at = Column(DateTime, onupdate=func.now())
+    created_at = Column(DateTime, default=func.now())
+    updated_at = Column(DateTime, nullable=True, onupdate=func.now())
     deleted_at = Column(DateTime, index=True, nullable=True, default=None)
-    category = relationship("ProductCategory", back_populates="category")
+    category = relationship("ProductCategory", back_populates="products")
