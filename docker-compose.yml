@@ -13,7 +13,7 @@ services:
     expose:
     - '5432'
     networks:
-      - app-network
+    - app-network
 
   test-postgres:
     image: postgres:15-alpine
@@ -27,7 +27,7 @@ services:
     expose:
     - '5434'   # Exposing the different port for clarity
     networks:
-      - app-network
+    - app-network
 
   backend:
     build: ./backend
@@ -41,9 +41,9 @@ services:
     ports:
     - 3000:80
     networks:
-      - app-network
+    - app-network
     healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:3000/status" ]
+      test: [CMD, curl, -f, http://localhost:3000/status]
       interval: 30s
       timeout: 10s
       retries: 5

@@ -1,16 +1,15 @@
 """init tables
 
 Revision ID: 4e06c6b767af
-Revises: 
+Revises:
 Create Date: 2024-08-04 12:12:25.130296
 
 """
-from alembic import op
 import sqlalchemy as sa
-
+from alembic import op
 
 # revision identifiers, used by Alembic.
-revision = '4e06c6b767af'
+revision = "4e06c6b767af"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,18 +36,17 @@ def upgrade():
         sa.Column("deleted_at", sa.DateTime(), nullable=True, index=True),
         sa.Column("category_id", sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(
-            ["category_id"], ["product_categories.id"],
-            name=op.f("fk_products_categories_id_category")
+            ["category_id"], ["product_categories.id"], name=op.f("fk_products_categories_id_category")
         ),
         sa.PrimaryKeyConstraint("id", name=op.f("pk_products")),
         sa.UniqueConstraint("id", name=op.f("uq_products_id")),
     )
-    op.create_index('idx_products_name', 'products', ['name'], unique=False)
-    op.create_index('idx_products_deleted_at', 'products', ['deleted_at'], unique=False)
+    op.create_index("idx_products_name", "products", ["name"], unique=False)
+    op.create_index("idx_products_deleted_at", "products", ["deleted_at"], unique=False)
 
 
 def downgrade():
-    op.drop_index('idx_products_name', 'table_name')
-    op.drop_index('idx_products_deleted_at', 'table_name')
+    op.drop_index("idx_products_name", "table_name")
+    op.drop_index("idx_products_deleted_at", "table_name")
     op.drop_table("products")
     op.drop_table("product_categories")

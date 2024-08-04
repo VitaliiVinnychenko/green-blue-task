@@ -1,4 +1,13 @@
-from sqlalchemy import Column, String, Float, BigInteger, Integer, Text, DateTime, ForeignKey
+from sqlalchemy import (
+    BigInteger,
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+    Text,
+)
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -20,7 +29,7 @@ class Product(Base):
     name = Column(String(100), nullable=False, index=True)
     price = Column(Float, nullable=False)
     description = Column(Text, nullable=False)
-    category_id = Column(Integer, ForeignKey('product_categories.id'), nullable=True)
+    category_id = Column(Integer, ForeignKey("product_categories.id"), nullable=True)
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, onupdate=func.now())
     deleted_at = Column(DateTime, index=True, nullable=True, default=None)
