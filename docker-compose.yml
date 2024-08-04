@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: dev-user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev_db
+    ports:
+    - 5432:5432
+    expose:
+    - '5432'
+
+  test-postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: test-user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: test_db
+    ports:
+    - 5434:5432   # Use a different port to avoid conflicts with the main database
+    expose:
+    - '5434'   # Exposing the different port for clarity
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 80 --workers 1 --proxy-headers --reload
+    volumes:
+    - ./backend:/usr/src/app
+    tty: true
+    env_file: .env
+    depends_on:
+    - postgres
+    ports:
+    - 3000:80
