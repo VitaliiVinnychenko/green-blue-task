@@ -24,7 +24,7 @@ services:
     env_file: .env
     environment:
       PYTHONPATH: .
-      DATABASE_URL: "postgresql+asyncpg://dev-user:password@postgres:5432/dev_db"
+      DATABASE_URL: postgresql+asyncpg://dev-user:password@postgres:5432/dev_db
     depends_on:
     - postgres
     ports:
