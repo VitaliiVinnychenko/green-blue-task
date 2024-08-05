@@ -18,5 +18,5 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        context: backend
+        context: ./backend
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/register:latest
