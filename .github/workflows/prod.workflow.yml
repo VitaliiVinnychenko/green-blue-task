@@ -18,4 +18,5 @@ jobs:
       with:
         push: true
         file: ./backend/Dockerfile
+        working-directory: ./backend
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/register:latest
