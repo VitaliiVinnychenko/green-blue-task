@@ -144,5 +144,5 @@ be derived from a few places, in the following order.
 **Run tests**
 
 ```bash
-DATABASE_URL=postgresql+asyncpg://dev-user:password@localhost:5432/dev_db pytest .
+DATABASE_URL=postgresql+asyncpg://dev-user:password@localhost:5432/dev_db coverage run -m pytest  -v -s
 ```
