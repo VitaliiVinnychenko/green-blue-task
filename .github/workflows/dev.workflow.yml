@@ -43,7 +43,9 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: cd backend && poetry install --no-interaction --no-root
     - name: Install project
-      run: cd backend && poetry install --no-interaction
+      run: |
+        cd backend
+        poetry install --no-interaction
     - name: Lint with Ruff
       run: |
         pip install ruff
@@ -51,7 +53,8 @@ jobs:
       continue-on-error: true
     - name: Test with pytest
       run: |
-        pip install pytest-cov
+        cd backend
+        poetry shell
         DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/db_test coverage run -m pytest  -v -s
     - name: Generate Coverage Report
       run: |
