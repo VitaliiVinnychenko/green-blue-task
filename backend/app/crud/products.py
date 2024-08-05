@@ -40,7 +40,7 @@ async def create_new_products(db_session: AsyncSession, data: list[CreateUpdateP
                     name=product.name,
                     price=product.price,
                     description=product.description,
-                    category_id=product.category_id,
+                    category=product.category,
                 )
             )
 
@@ -60,7 +60,7 @@ async def update_product_by_id(db_session: AsyncSession, product_id: int, data: 
         product.name = data.name.strip()
         product.description = data.description.strip()
         product.price = data.price
-        product.category_id = data.category_id
+        product.category = data.category
     except SQLAlchemyError:
         await db_session.rollback()
         raise

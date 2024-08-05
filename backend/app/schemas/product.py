@@ -4,6 +4,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 from app.config import get_settings, Settings
+from app.utils.enums.products import Category
 
 settings: Settings = get_settings()
 
@@ -18,7 +19,7 @@ class CreateUpdateProductRequest(BaseModel):
     name: str
     price: float
     description: str
-    category_id: Optional[int] = None
+    category: Optional[Category] = None
 
 
 class Product(CreateUpdateProductRequest):
@@ -26,5 +27,3 @@ class Product(CreateUpdateProductRequest):
     created_at: datetime
     updated_at: Optional[datetime] = None
     deleted_at: Optional[datetime] = None
-    category_id: Optional[int] = None
-    category: Optional[ProductCategory] = None
