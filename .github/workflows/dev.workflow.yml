@@ -53,7 +53,6 @@ jobs:
       continue-on-error: true
     - name: Test with pytest
       run: |
-        cd backend
         poetry shell
         DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/db_test coverage run -m pytest  -v -s
     - name: Generate Coverage Report
