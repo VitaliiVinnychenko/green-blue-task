@@ -1,16 +1,8 @@
-from sqlalchemy import (
-    BigInteger,
-    Column,
-    DateTime,
-    Float,
-    String,
-    Text,
-    Enum,
-)
+from sqlalchemy import BigInteger, Column, DateTime, Enum, Float, String, Text
 from sqlalchemy.sql import func
 
-from . import Base
 from ..utils.enums.products import Category
+from . import Base
 
 
 class Product(Base):
