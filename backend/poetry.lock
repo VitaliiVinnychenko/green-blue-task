@@ -2452,6 +2452,36 @@ tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 testing = ["argcomplete", "attrs (>=19.2.0)", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-alembic"
+version = "0.11.1"
+description = "A pytest plugin for verifying alembic migrations."
+optional = false
+python-versions = "<4,>=3.6"
+files = [
+    {file = "pytest_alembic-0.11.1-py3-none-any.whl", hash = "sha256:f83e8c1534d50ced053aa4b1dbf6e261f4674aa626cb852fc1dcb565049ae152"},
+    {file = "pytest_alembic-0.11.1.tar.gz", hash = "sha256:a920d8770b5be77326c5c1b2bd8d4d4a0dd8fc2c2d57abbcd1fec28a21131b85"},
+]
+
+[package.dependencies]
+alembic = "*"
+pytest = ">=6.0"
+sqlalchemy = "*"
+
+[[package]]
+name = "pytest-logger"
+version = "1.1.1"
+description = "Plugin configuring handlers for loggers from Python logging module."
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytest-logger-1.1.1.tar.gz", hash = "sha256:82cb36b505a72e15a2f0e12c6451d8c21ecbe0379d322b2bed4f05cb7842c9d9"},
+    {file = "pytest_logger-1.1.1-py2.py3-none-any.whl", hash = "sha256:d9f7b88c04828de649a033779d30f359fce026fde37c1e91d83336a66d27a9fb"},
+]
+
+[package.dependencies]
+pytest = ">=3.2"
+
+[[package]]
 name = "python-dotenv"
 version = "1.0.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -3351,4 +3381,4 @@ test = ["big-O", "importlib-resources", "jaraco.functools", "jaraco.itertools", 
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4"
-content-hash = "44b0fb54b5f09344a8516b2770009d1772fcc4e054483f894e0e445a84af72d5"
+content-hash = "dd0b6ab442dccf48971051a618e3ff078a6da4efe570895860ad8c0a2eb3f62e"

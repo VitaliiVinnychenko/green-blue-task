@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Optional
 
 from pydantic_settings import BaseSettings
 
@@ -11,7 +12,7 @@ class Settings(BaseSettings):
 
     app_name: str = "mrv-service"
     root_path: str = ""
-    database_url: str
+    database_url: str = ""
     echo_sql: bool = True
     test: bool = False
     PYTHONPATH: str = "."
@@ -40,20 +41,20 @@ class Settings(BaseSettings):
 
     # Auth0 configuration
     AUTH0_DISABLED: bool = True
-    AUTH0_DOMAIN: str
+    AUTH0_DOMAIN: Optional[str] = None
     AUTH0_ALGORITHMS: str = "RS256"
-    AUTH0_DEFAULT_DB_CONNECTION: str
-    AUTH0_API_DEFAULT_AUDIENCE: str
-    AUTH0_APPLICATION_CLIENT_ID: str
-    AUTH0_APPLICATION_CLIENT_SECRET: str
-    AUTH0_TEST_USERNAME: str
-    AUTH0_TEST_PASSWORD: str
+    AUTH0_DEFAULT_DB_CONNECTION: Optional[str] = None
+    AUTH0_API_DEFAULT_AUDIENCE: Optional[str] = None
+    AUTH0_APPLICATION_CLIENT_ID: Optional[str] = None
+    AUTH0_APPLICATION_CLIENT_SECRET: Optional[str] = None
+    AUTH0_TEST_USERNAME: Optional[str] = None
+    AUTH0_TEST_PASSWORD: Optional[str] = None
     AUTH0_CALLBACK_URL: str = "http://localhost/login/callback"
 
     # Auth0 Management API
-    AUTH0_MANAGEMENT_API_CLIENT_ID: str
-    AUTH0_MANAGEMENT_API_CLIENT_SECRET: str
-    AUTH0_MANAGEMENT_API_AUDIENCE: str
+    AUTH0_MANAGEMENT_API_CLIENT_ID: Optional[str] = None
+    AUTH0_MANAGEMENT_API_CLIENT_SECRET: Optional[str] = None
+    AUTH0_MANAGEMENT_API_AUDIENCE: Optional[str] = None
 
     class Config:
         """

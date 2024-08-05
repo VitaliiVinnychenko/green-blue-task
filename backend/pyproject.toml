@@ -51,6 +51,9 @@ asyncio = "^3.4.3"
 sqlalchemy = "^2.0.31"
 asyncpg = "^0.29.0"
 alembic = "^1.13.2"
+greenlet = "^3.0.3"
+pytest-alembic = "^0.11.1"
+pytest-logger = "^1.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
