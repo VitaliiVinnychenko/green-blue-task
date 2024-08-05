@@ -1,15 +1,15 @@
 import asyncio
-from contextlib import ExitStack
-
 import pytest
-from alembic import Config, MigrationContext, Operations, ScriptDirectory
+from alembic.config import Config
+from alembic.migration import MigrationContext
+from alembic.operations import Operations
+from alembic.script import ScriptDirectory
+from app.config import settings
+from app.database import Base, get_db_session, sessionmanager
+from app.main import app as actual_app
 from asyncpg import Connection
-from config import get_settings
-from database import Base, get_db_session, sessionmanager
+from contextlib import ExitStack
 from fastapi.testclient import TestClient
-from main import app as actual_app
-
-settings = get_settings()
 
 
 @pytest.fixture(autouse=True)
@@ -32,8 +32,8 @@ def event_loop(request):
 
 
 def run_migrations(connection: Connection):
-    config = Config("app/alembic.ini")
-    config.set_main_option("script_location", "app/alembic")
+    config = Config("alembic.ini")
+    config.set_main_option("script_location", "app/migrations")
     config.set_main_option("sqlalchemy.url", settings.database_url)
     script = ScriptDirectory.from_config(config)
 
@@ -49,7 +49,7 @@ def run_migrations(connection: Connection):
 
 @pytest.fixture(scope="session", autouse=True)
 async def setup_database():
-    # Run alembic alembic on test DB
+    # Run alembic migrations on test DB
     async with sessionmanager.connect() as connection:
         await connection.run_sync(run_migrations)
 

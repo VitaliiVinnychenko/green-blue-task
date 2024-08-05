@@ -52,7 +52,7 @@ sudo apt install -y git openssl
 ### 1.3.2 Python + pip + Poetry versions
 
 ```
-pyenv install 3.11.3
+pyenv install 3.12.1
 curl -sSL https://install.python-poetry.org | python3 -
 cd greeb-blue-task
 poetry shell
