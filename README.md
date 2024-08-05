@@ -125,7 +125,9 @@ Assuming you have all installations above configured
 docker-compose up -d --build
 ```
 
-## 4.4 Local start up message
+API should available here - http://localhost:3000/docs
+
+## 4.2 Local start up message
 
 You should see `INFO: Application startup complete` in the terminal
 
